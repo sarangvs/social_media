@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:social_media/Views/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -74,17 +76,20 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: screenHeight * 0.05,
                       ),
-                      Container(
-                        height: screenHeight * 0.06,
-                        decoration: const BoxDecoration(
-                            color: Colors.black,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(12))),
-                        child: Center(
-                          child: Text(
-                            'Login',
-                            style: GoogleFonts.k2d(
-                                color: Colors.white, fontSize: 18),
+                      GestureDetector(
+                        onTap: (){},
+                        child: Container(
+                          height: screenHeight * 0.06,
+                          decoration: const BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
+                          child: Center(
+                            child: Text(
+                              'Login',
+                              style: GoogleFonts.k2d(
+                                  color: Colors.white, fontSize: 18),
+                            ),
                           ),
                         ),
                       )
@@ -94,63 +99,70 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: screenHeight * 0.01,
                 ),
-                Container(
-                  width: screenWidth * 0.76,
-                  margin: EdgeInsets.only(left: screenWidth * 0.12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Or Login with...',
-                        style: GoogleFonts.k2d(color: Colors.grey[600]),
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.01,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                border:
-                                    Border.all(width: 0.9, color: Colors.grey)),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Image.asset('Assets/google.png'),
+                Expanded(
+                  child: Container(
+                    width: screenWidth * 0.76,
+                    margin: EdgeInsets.only(left: screenWidth * 0.12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Or Login with...',
+                          style: GoogleFonts.k2d(color: Colors.grey[600]),
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.01,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(width: 0.9, color: Colors.grey)),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Image.asset('Assets/google.png'),
+                              ),
                             ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                border:
-                                    Border.all(width: 0.9, color: Colors.grey)),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Image.asset('Assets/facebook.png'),
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(width: 0.9, color: Colors.grey)),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Image.asset('Assets/facebook.png'),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.02,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'New to App?',
+                              style: GoogleFonts.k2d(color: Colors.grey),
                             ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.02,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'New to App?',
-                            style: GoogleFonts.k2d(color: Colors.grey),
-                          ),
-                          Text(
-                            'Register',
-                            style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      )
-                    ],
+                            InkWell(
+                              onTap: (){
+                                Get.to(const SignupScreen());
+                              },
+                              child: Text(
+                                'Register',
+                                style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
