@@ -17,8 +17,9 @@ class StoryRow extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
+      padding: EdgeInsets.all(1.sp),
       width: screenWidth,
-      height: 9.h,
+      height: 10.h,
       child: FutureBuilder(
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return ListView.separated(
@@ -27,8 +28,8 @@ class StoryRow extends StatelessWidget {
               return GestureDetector(
                 onTap: () => Get.to(const StoryPageViewer()),
                 child: DashedCircle(
-                  child:const CircleAvatar(
-                    radius: 34,
+                  child: CircleAvatar(
+                    radius: 24.2.sp,
                     backgroundImage: AssetImage('Assets/me.jpg'),
                   ),
                   color: Colors.deepOrangeAccent,
@@ -69,9 +70,9 @@ class PostFeed extends StatelessWidget {
               return Center(
                 child: Container(
                   color: const Color(0xffF5F5F5),
-                  padding: EdgeInsets.all(9.sp),
+                  padding: EdgeInsets.all(8.sp),
                   child: Container(
-                    padding: EdgeInsets.all(10.sp),
+                    padding: EdgeInsets.all(7.sp),
                     height: 64.h,
                     width: 100.w,
                     decoration: BoxDecoration(
@@ -82,7 +83,7 @@ class PostFeed extends StatelessWidget {
                         BoxShadow(
                             color: Colors.white.withOpacity(0.9),
                             spreadRadius: 10,
-                            blurRadius: 5,
+                            blurRadius: 3,
                             offset: const Offset(0, 7))
                       ],
                     ),
@@ -95,7 +96,7 @@ class PostFeed extends StatelessWidget {
                               height: 5.h,
                               width: 10.w,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
+                                borderRadius: BorderRadius.circular(100.sp),
                                 image: const DecorationImage(
                                     image: AssetImage('Assets/me.jpg')),
                               ),
@@ -112,6 +113,7 @@ class PostFeed extends StatelessWidget {
                         )),
                         Positioned(
                             top: 37.sp,
+                            left: 1.3.w,
                             child: Container(
                               height: 44.h,
                               width: 87.w,
@@ -123,6 +125,7 @@ class PostFeed extends StatelessWidget {
                             )),
                         Positioned(
                             top: 50.h,
+                            left: 0.w,
                             child: Row(
                               children: [
                                 IconButton(
@@ -151,8 +154,9 @@ class PostFeed extends StatelessWidget {
                                 color: Colors.black54,
                               ),
                             )),
+
                         Positioned(
-                            top: 55.5.h,
+                            top: 56.h,
                             left: 2.w,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,6 +167,7 @@ class PostFeed extends StatelessWidget {
                                   style: GoogleFonts.k2d(
                                       fontWeight: FontWeight.bold),
                                 ),
+                                SizedBox(height: 0.5.h,),
                                 Text(
                                   'View all 43 comments',
                                   style: GoogleFonts.k2d(color: Colors.grey),

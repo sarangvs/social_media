@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_media/Views/bottom_navscreen.dart';
+import 'package:social_media/Views/chat_screen.dart';
 import 'package:social_media/Views/home_screen.dart';
 import 'package:social_media/Views/login_screen.dart';
 import 'package:get/get.dart';
