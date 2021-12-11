@@ -22,8 +22,7 @@ class MyProfile extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Container(
                       color: const Color(0xffF5F5F7),
-                      child: const MyProfileHeader()
-                  ),
+                      child: const MyProfileHeader()),
                 ),
               ];
             },
