@@ -12,6 +12,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
           backgroundColor: const Color(0xffF5F5F5),
@@ -39,12 +41,15 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           body: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: Column(
-              children: const [
-                StoryRow(),
-                PostFeed(),
-              ],
+            child: SizedBox(
+              height: screenHeight,
+              width: screenWidth,
+              child: Column(
+                children: const [
+                  StoryRow(),
+                  PostFeed(),
+                ],
+              ),
             ),
           )),
     );

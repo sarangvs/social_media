@@ -28,9 +28,10 @@ class StoryRow extends StatelessWidget {
               return GestureDetector(
                 onTap: () => Get.to(const StoryPageViewer()),
                 child: DashedCircle(
+                  dashes: 10,
                   child: CircleAvatar(
-                    radius: 24.2.sp,
-                    backgroundImage: AssetImage('Assets/me.jpg'),
+                    radius: 28.sp,
+                    backgroundImage: const AssetImage('Assets/me.jpg'),
                   ),
                   color: Colors.deepOrangeAccent,
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,7 +23,9 @@ class ChatScreen extends StatelessWidget {
                   Icons.arrow_back_ios,
                   color: Colors.black54,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
               ),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

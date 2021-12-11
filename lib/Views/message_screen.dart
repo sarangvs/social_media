@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_media/Views/chat_screen.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({Key? key}) : super(key: key);
@@ -49,10 +50,11 @@ class MessageScreen extends StatelessWidget {
                     ),
                     subtitle: const Text('Hello..!!'),
                     trailing: const Text('14:00'),
+                    onTap: ()=>Get.to(const ChatScreen()),
                   ),
                 );
               },
-              itemCount: 8,
+              itemCount: 12,
               separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(
                   height: 2.h,

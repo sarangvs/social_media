@@ -8,4 +8,5 @@ class PageController extends GetxController{
   final storyController = StoryController();
 
 
+
 }
