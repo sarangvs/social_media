@@ -39,13 +39,18 @@ class MyProfile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Icon(Icons.location_on),
+                          const Icon(
+                            Icons.location_on,
+                            size: 15,
+                          ),
                           SizedBox(
                             width: 1.w,
                           ),
                           Text(
                             'Lives in Calicut, Kerala',
-                            style: GoogleFonts.k2d(fontWeight: FontWeight.w500),
+                            style: GoogleFonts.k2d(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -55,9 +60,12 @@ class MyProfile extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(
-                            width: 7.w,
+                            width: 5.w,
                           ),
-                          const Text('Developer||Cars||Dogs'),
+                          Text(
+                            'Developer||Cars||Dogs',
+                            style: GoogleFonts.k2d(color: Colors.grey[700]),
+                          ),
                         ],
                       )
                     ],

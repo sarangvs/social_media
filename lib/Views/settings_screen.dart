@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,7 +24,16 @@ class SettingScreen extends StatelessWidget {
           ),
           toolbarHeight: 10.h,
           elevation: 0,
-          // leading: const FaIcon(FontAwesomeIcons.cog,color: Colors.black,),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new_sharp,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          titleSpacing: 1.w,
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 14.sp),
@@ -32,8 +42,8 @@ class SettingScreen extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Account',
-                style:
-                    GoogleFonts.k2d(fontWeight: FontWeight.bold, fontSize: 17.sp),
+                style: GoogleFonts.k2d(
+                    fontWeight: FontWeight.bold, fontSize: 17.sp),
               ),
               SizedBox(
                 height: 2.h,
@@ -78,8 +88,8 @@ class SettingScreen extends StatelessWidget {
               ),
               Text(
                 'Other',
-                style:
-                    GoogleFonts.k2d(fontWeight: FontWeight.bold, fontSize: 17.sp),
+                style: GoogleFonts.k2d(
+                    fontWeight: FontWeight.bold, fontSize: 17.sp),
               ),
               SizedBox(
                 height: 2.h,
@@ -121,14 +131,14 @@ class SettingScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 17.h,
+                height: 15.h,
               ),
               Expanded(
-                child: const Divider(
-                  color: Colors.black,
-                ),
-              ),
-              Expanded(child: Center(child: Text('AppName 0.1.1')))
+                  child: Center(
+                      child: Text(
+                'AppName 0.1.1',
+                style: GoogleFonts.k2d(color: Colors.grey),
+              )))
             ],
           ),
         ),

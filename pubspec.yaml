@@ -38,6 +38,7 @@ dependencies:
   story_view: ^0.13.2
   dashed_circle: ^0.0.2
   modal_bottom_sheet: ^2.0.0
+  material_floating_search_bar: ^0.3.6
 
 
 

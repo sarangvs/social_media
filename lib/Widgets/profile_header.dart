@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_media/Views/edit_my_profile.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({Key? key}) : super(key: key);
@@ -164,7 +166,6 @@ class ProfileHeader extends StatelessWidget {
                         labelColor: Colors.black,
                         unselectedLabelColor: Colors.grey,
                         indicatorSize: TabBarIndicatorSize.tab,
-
                         indicatorColor: Colors.black,
                         automaticIndicatorColorAdjustment: true,
                         indicatorWeight: 2.5.sp,
@@ -212,7 +213,7 @@ class MyProfileHeader extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 13.sp),
+                padding: EdgeInsets.symmetric(horizontal: 6.w),
                 child: Container(
                   width: 91.w,
                   height: 26.h,
@@ -224,11 +225,11 @@ class MyProfileHeader extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  left: 34.w,
+                  left: 35.w,
                   top: 16.5.h,
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
-                    radius: 50.sp,
+                    radius: 15.w,
                     backgroundImage: const AssetImage('Assets/me.jpg'),
                   )),
               Positioned(
@@ -307,49 +308,55 @@ class MyProfileHeader extends StatelessWidget {
                   child: SizedBox(
                     width: 91.1.w,
                     height: 10.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: 40.w,
-                          height: 5.5.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
-                          ),
-                          child: Center(
-                            child: Text(
-                              '+ Add to your story',
-                              style: GoogleFonts.k2d(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 40.w,
-                          height: 5.5.h,
-                          decoration: BoxDecoration(
+                    child: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 40.w,
+                            height: 6.h,
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: Colors.white,
-                              border: Border.all()),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.edit),
-                                Text(
-                                  'Edit profile',
-                                  style: GoogleFonts.k2d(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black
-                                  ),
-                                ),
-                              ],
+                              color: Colors.black,
+                            ),
+                            child: Center(
+                              child: Text(
+                                '+ Add to your story',
+                                style: GoogleFonts.k2d(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
-                        )
-                      ],
+                          GestureDetector(
+                            onTap: ()=>Get.to(const EditMYProfile()),
+                            child: Container(
+                              width: 40.w,
+                              height: 6.h,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.white,
+                                  border: Border.all()),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.edit,
+                                    size: 15.sp,
+                                  ),
+                                  Text(
+                                    'Edit profile',
+                                    style: GoogleFonts.k2d(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   )),
               Positioned(
@@ -363,11 +370,10 @@ class MyProfileHeader extends StatelessWidget {
                       elevation: 0,
                       bottom: TabBar(
                         unselectedLabelStyle:
-                        const TextStyle(color: Colors.grey),
+                            const TextStyle(color: Colors.grey),
                         labelColor: Colors.black,
                         unselectedLabelColor: Colors.grey,
                         indicatorSize: TabBarIndicatorSize.tab,
-
                         indicatorColor: Colors.black,
                         automaticIndicatorColorAdjustment: true,
                         indicatorWeight: 2.5.sp,
@@ -399,5 +405,3 @@ class MyProfileHeader extends StatelessWidget {
     ]);
   }
 }
-
-

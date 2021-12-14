@@ -14,44 +14,41 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+        backgroundColor: const Color(0xffF5F5F5),
+        appBar: AppBar(
           backgroundColor: const Color(0xffF5F5F5),
-          appBar: AppBar(
-            backgroundColor: const Color(0xffF5F5F5),
-            elevation: 0,
-            toolbarHeight: 9.h,
-            title: Text(
-              'AppName',
-              style: GoogleFonts.k2d(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 19.sp),
-            ),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    Get.to(const MessageScreen());
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.facebookMessenger,
-                    color: Colors.black,
-                  )
-              )
-            ],
+          elevation: 0,
+          toolbarHeight: 9.h,
+          title: Text(
+            'AppName',
+            style: GoogleFonts.k2d(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 19.sp),
           ),
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: screenHeight,
-              width: screenWidth,
-              child: Column(
-                children: const [
-                  StoryRow(),
-                  PostFeed(),
-                ],
-              ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(const MessageScreen());
+                },
+                icon: const FaIcon(
+                  FontAwesomeIcons.facebookMessenger,
+                  color: Colors.black,
+                ))
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: screenHeight,
+            width: screenWidth,
+            child: Column(
+              children: const [
+                StoryRow(),
+                PostFeed(),
+              ],
             ),
-          )),
-    );
+          ),
+        ));
   }
 }

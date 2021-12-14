@@ -17,9 +17,9 @@ class StoryRow extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.all(1.sp),
+      padding: EdgeInsets.only(top:0.9,left: 3.w),
       width: screenWidth,
-      height: 10.h,
+      height: 11.h,
       child: FutureBuilder(
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return ListView.separated(
@@ -27,20 +27,27 @@ class StoryRow extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => Get.to(const StoryPageViewer()),
-                child: DashedCircle(
-                  dashes: 10,
-                  child: CircleAvatar(
-                    radius: 28.sp,
-                    backgroundImage: const AssetImage('Assets/me.jpg'),
+                child: Padding(
+                  padding:  EdgeInsets.all(1.w),
+                  child: DashedCircle(
+                    color: Colors.orangeAccent,
+                    dashes: 10,
+                    child: Padding(
+                      padding:  EdgeInsets.all(1.w),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 8.6.w,
+                        backgroundImage: const AssetImage('Assets/me.jpg'),
+                      ),
+                    ),
                   ),
-                  color: Colors.deepOrangeAccent,
                 ),
               );
             },
             itemCount: 10,
             separatorBuilder: (BuildContext context, int index) {
               return SizedBox(
-                width: 2.w,
+                width: 4.w,
               );
             },
           );
@@ -61,130 +68,115 @@ class PostFeed extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 5,),
       height: screenWidth + 250,
       width: screenWidth,
       child: FutureBuilder(
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return ListView.separated(
             itemBuilder: (context, index) {
-              return Center(
-                child: Container(
-                  color: const Color(0xffF5F5F5),
-                  padding: EdgeInsets.all(8.sp),
-                  child: Container(
-                    padding: EdgeInsets.all(7.sp),
-                    height: 64.h,
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      // color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.white.withOpacity(0.9),
-                            spreadRadius: 10,
-                            blurRadius: 3,
-                            offset: const Offset(0, 7))
-                      ],
-                    ),
-                    child: Stack(
+              return Container(
+                margin: EdgeInsets.all(3.5.w),
+                padding: EdgeInsets.only(left: 1.4.w,top: 2.h,right: 2.5.w,bottom: 0),
+                height: 68.h,
+                width: 100.w,
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(10),
+                  // color: Colors.white,
+                ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                        child: Row(
                       children: [
-                        Positioned(
-                            child: Row(
+                       CircleAvatar(
+                         radius: 5.w,
+                         backgroundImage: AssetImage('Assets/me.jpg'),
+                       ),
+                        SizedBox(
+                          width: 1.w,
+                        ),
+                        Text(
+                          'Sarang',
+                          style: GoogleFonts.k2d(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        )
+                      ],
+                    )),
+                    Positioned(
+                        top: 37.sp,
+                        left: 1.3.w,
+                        child: Container(
+                          height: 44.h,
+                          width: 87.w,
+                          decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                  image: AssetImage('Assets/post.jpg'),
+                                  fit: BoxFit.fitWidth),
+                              borderRadius: BorderRadius.circular(10)),
+                        )),
+                    Positioned(
+                        top: 50.h,
+                        left: 0.w,
+                        child: Row(
                           children: [
-                            Container(
-                              height: 5.h,
-                              width: 10.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100.sp),
-                                image: const DecorationImage(
-                                    image: AssetImage('Assets/me.jpg')),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 1.w,
-                            ),
-                            Text(
-                              'Sarang',
-                              style: GoogleFonts.k2d(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
-                            )
+                            IconButton(
+                                onPressed: () {},
+                                splashColor: Colors.grey,
+                                icon: Image.asset(
+                                  'Assets/heart.png',
+                                  fit: BoxFit.contain,
+                                )),
+                            IconButton(
+                                onPressed: () {},
+                                splashColor: Colors.grey,
+                                icon: Image.asset(
+                                  'Assets/comment.png',
+                                  fit: BoxFit.contain,
+                                )),
                           ],
                         )),
-                        Positioned(
-                            top: 37.sp,
-                            left: 1.3.w,
-                            child: Container(
-                              height: 44.h,
-                              width: 87.w,
-                              decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                      image: AssetImage('Assets/post.jpg'),
-                                      fit: BoxFit.fitWidth),
-                                  borderRadius: BorderRadius.circular(10)),
-                            )),
-                        Positioned(
-                            top: 50.h,
-                            left: 0.w,
-                            child: Row(
-                              children: [
-                                IconButton(
-                                    onPressed: () {},
-                                    splashColor: Colors.grey,
-                                    icon: Image.asset(
-                                      'Assets/heart.png',
-                                      fit: BoxFit.contain,
-                                    )),
-                                IconButton(
-                                    onPressed: () {},
-                                    splashColor: Colors.grey,
-                                    icon: Image.asset(
-                                      'Assets/comment.png',
-                                      fit: BoxFit.contain,
-                                    )),
-                              ],
-                            )),
-                        Positioned(
-                            top: 50.h,
-                            left: 77.w,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const FaIcon(
-                                FontAwesomeIcons.bookmark,
-                                color: Colors.black54,
-                              ),
-                            )),
+                    Positioned(
+                        top: 50.h,
+                        left: 78.5.w,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const FaIcon(
+                            FontAwesomeIcons.bookmark,
+                            color: Colors.black54,
+                          ),
+                        )),
 
-                        Positioned(
-                            top: 56.h,
-                            left: 2.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  '1022 likes',
-                                  style: GoogleFonts.k2d(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 0.5.h,),
-                                Text(
-                                  'View all 43 comments',
-                                  style: GoogleFonts.k2d(color: Colors.grey),
-                                )
-                              ],
-                            ))
-                      ],
-                    ),
-                  ),
+                    Positioned(
+                        top: 56.h,
+                        left: 2.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              height: 0.7.h,
+                            ),
+                            Text(
+                              '1022 likes',
+                              style: GoogleFonts.k2d(
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 0.7.h,),
+                            Text(
+                              'View all 43 comments',
+                              style: GoogleFonts.k2d(color: Colors.grey),
+                            )
+                          ],
+                        ))
+                  ],
                 ),
               );
             },
             itemCount: 4,
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 2.h,
+              return const SizedBox(
               );
             },
           );
