@@ -12,6 +12,7 @@ class SearchScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           toolbarHeight: 11.h,
 

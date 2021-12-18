@@ -11,6 +11,7 @@ class ActivityScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 11.h,
           backgroundColor: const Color(0xffF5F5F5),
           title: Text(

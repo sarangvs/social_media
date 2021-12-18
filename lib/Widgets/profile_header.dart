@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_media/Views/edit_my_profile.dart';
+import 'package:social_media/Views/following_followers_screen.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({Key? key}) : super(key: key);
@@ -253,9 +254,12 @@ class MyProfileHeader extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            '45',
-                            style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                          InkWell(
+                            child: Text(
+                              '45',
+                              style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                            ),
+                            onTap: ()=>Get.to(const FollowingFollowers()),
                           ),
                           SizedBox(
                             height: 1.h,
@@ -269,9 +273,12 @@ class MyProfileHeader extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            '10.2m',
-                            style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                          InkWell(
+                            child: Text(
+                              '10.2m',
+                              style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                            ),
+                            onTap: ()=>Get.to(const FollowingFollowers()),
                           ),
                           SizedBox(
                             height: 1.h,

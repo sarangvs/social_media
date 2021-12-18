@@ -8,7 +8,6 @@ class PageController extends GetxController{
   ///Story viewer controller
   final storyController = StoryController();
 ///Bottom nav bar
-int selectedIndex = 0;
 
 
 

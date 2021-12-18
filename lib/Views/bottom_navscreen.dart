@@ -90,9 +90,4 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         ));
   }
 
-  void onItemTapped(int index) {
-    setState(() {
-      pageController.selectedIndex = index;
-    });
-  }
 }

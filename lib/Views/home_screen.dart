@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: const Color(0xffF5F5F5),
           elevation: 0,
           toolbarHeight: 9.h,

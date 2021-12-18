@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:social_media/Views/bottom_navscreen.dart';
 import 'package:social_media/Views/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -77,7 +78,9 @@ class LoginScreen extends StatelessWidget {
                         height: screenHeight * 0.05,
                       ),
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () {
+                          Get.to(const BottomNavScreen());
+                        },
                         child: Container(
                           height: screenHeight * 0.06,
                           decoration: const BoxDecoration(
@@ -106,9 +109,10 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Or Login with...',
-                          style: GoogleFonts.k2d(color: Colors.grey[600]),
+                           Text(
+                            'Or Login with...',
+                            style: GoogleFonts.k2d(color: Colors.grey[600]),
+
                         ),
                         SizedBox(
                           height: screenHeight * 0.01,
@@ -120,8 +124,8 @@ class LoginScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white,
-                                  border:
-                                      Border.all(width: 0.9, color: Colors.grey)),
+                                  border: Border.all(
+                                      width: 0.9, color: Colors.grey)),
                               child: IconButton(
                                 onPressed: () {},
                                 icon: Image.asset('Assets/google.png'),
@@ -131,8 +135,8 @@ class LoginScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white,
-                                  border:
-                                      Border.all(width: 0.9, color: Colors.grey)),
+                                  border: Border.all(
+                                      width: 0.9, color: Colors.grey)),
                               child: IconButton(
                                 onPressed: () {},
                                 icon: Image.asset('Assets/facebook.png'),
@@ -150,13 +154,15 @@ class LoginScreen extends StatelessWidget {
                               'New to App?',
                               style: GoogleFonts.k2d(color: Colors.grey),
                             ),
+                            const SizedBox(width: 7,),
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Get.to(const SignupScreen());
                               },
                               child: Text(
                                 'Register',
-                                style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                                style: GoogleFonts.k2d(
+                                    fontWeight: FontWeight.bold),
                               ),
                             )
                           ],
