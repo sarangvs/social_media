@@ -86,7 +86,9 @@ class LoginScreen extends StatelessWidget {
                           decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
+                                  BorderRadius.all(Radius.circular(12)
+                                  )
+                          ),
                           child: Center(
                             child: Text(
                               'Login',
