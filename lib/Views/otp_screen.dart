@@ -58,9 +58,8 @@ class OtpScreen extends StatelessWidget {
                       borderWidth: 4.0,
                       onCodeChanged: (String code) {},
                       onSubmit: (String otp) async {
-                         authenticationController.mobileOtpVerify(otp);
+                       authenticationController.mobileOtpVerify(otp);
 
-                        Get.offAll(const HomeScreen());
                       },
                       cursorColor: Colors.black,
                       focusedBorderColor: Colors.black,
@@ -94,7 +93,7 @@ class OtpScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Didn't received the OTP?  ",
+                          "Didn't received the OTP?",
                           style: GoogleFonts.k2d(color: Colors.grey),
                         ),
                         InkWell(

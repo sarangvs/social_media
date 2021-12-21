@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:social_media/Views/bottom_navscreen.dart';
 import 'package:social_media/const/api_url.dart';
 import 'package:social_media/services/authentication_services.dart';
 import 'exception_controller.dart';
@@ -166,55 +167,6 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  ///Verify Mobile Otp
-  // Future<String?> otpVerification(String otp) async {
-  //   String phoneNumber = phoneController.text;
-  //
-  //   try {
-  //     final result = await AuthenticationServices.verifyWithOtp(
-  //         phoneNumber: phoneNumber, otp: otp);
-  //     print("Result from otppppp $result");
-  //     return result;
-  //   } on SocketException {
-  //     Get.snackbar('Something went wrong', 'Check your internet connection',
-  //         snackPosition: SnackPosition.BOTTOM,
-  //         backgroundColor: Colors.black87,
-  //         colorText: Colors.white,
-  //         icon: const Icon(
-  //           CupertinoIcons.wifi_slash,
-  //           color: Colors.white,
-  //         ));
-  //   } on HttpException {
-  //     Get.snackbar(
-  //       'Network Error',
-  //       'Please try after sometime',
-  //       backgroundColor: Colors.black87,
-  //       colorText: Colors.white,
-  //       snackPosition: SnackPosition.BOTTOM,
-  //     );
-  //   } on TimeoutException {
-  //     Get.snackbar(
-  //       'Connection Timeout',
-  //       'Please try again',
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       backgroundColor: Colors.black87,
-  //       colorText: Colors.white,
-  //     );
-  //   } on InvalidOtp {
-  //     Get.snackbar(
-  //       'Invalid otp or otp expired',
-  //       'Please try again',
-  //       icon: const Icon(
-  //         CupertinoIcons.device_phone_portrait,
-  //         color: Colors.white,
-  //       ),
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       backgroundColor: Colors.black87,
-  //       colorText: Colors.white,
-  //     );
-  //   }
-  //   return null;
-  // }
   ///MOBILE OTP
   Future<String?> mobileOtpVerify(String otp) async {
     final body = {"phone": phoneController.text, "otp": otp};
@@ -227,18 +179,14 @@ class AuthenticationController extends GetxController {
       switch (response.statusCode) {
         case 200:
           var jsonResponse = jsonDecode(response.body);
-          // print(jsonResponse["user"]);
-          //  print(jsonResponse["token"]);
-          preferences.setString('user', jsonResponse["user"]);
-          preferences.setString('token', jsonResponse["token"]);
-
-          dynamic userToken = preferences.getString('token');
-          dynamic userDetails = preferences.getString('user');
-         // print(userToken);
+          // preferences.setString('user', jsonResponse["user"]);
+          // preferences.setString('token', jsonResponse["token"]);
+          // dynamic userToken = preferences.get('token');
+          // dynamic userDetails = preferences.get('user');
+          // print(userToken);
           // print(userDetails);
-
-          return jsonResponse["user"]["token"];
-
+          Get.offAll(const BottomNavScreen());
+          break;
         case 400:
           throw InvalidOtp(response.body.toString());
 
@@ -254,28 +202,89 @@ class AuthenticationController extends GetxController {
             CupertinoIcons.wifi_slash,
             color: Colors.white,
           ));
+    } on InvalidOtp {
+      Get.snackbar(
+        'Invalid Otp',
+        'Please try again',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.black87,
+        colorText: Colors.white,
+      );
+    } on InvalidInputException {
+      Get.snackbar(
+        'Something Went Wrong',
+        'Please try again',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.black87,
+        colorText: Colors.white,
+      );
     }
   }
 
   ///login
-  Future<String?> userLogin() async {
+  Future<dynamic> userLogin() async {
     final isValid = loginFormKey.currentState!.validate();
+
+    SharedPreferences pref = await SharedPreferences.getInstance();
 
     if (!isValid) {
       return null;
     } else {
+      final body = {
+        "phone": loginUserDetailController.text,
+        "password": loginUserPassword.text
+      };
+      try {
+        var response = await http.post(ApiUrl.loginUrl, body: body);
 
-    final body = {
-      "phone": loginUserDetailController.text,
-      "password": loginUserPassword.text
-    };
+        switch (response.statusCode) {
+          case 200:
+            String encodedJsonRes = json.encode(response.body);
+            pref.setString('userData', encodedJsonRes);
 
-    var response = await http.post(ApiUrl.loginUrl, body: body);
+            var decodedJsonRes = jsonDecode(encodedJsonRes);
+            print(pref.getString('userData'));
 
-    if (response.statusCode == 200) {
-      var jsonRes = jsonDecode(response.body);
-      print(jsonRes);
+            // dynamic userToken = preferences.get('token');
+            // dynamic userDetails = preferences.get('user');
+            // await preferences.setString("token", jsonRes['token']);
+            // await preferences.setString("user", jsonRes['user']);
+            //  SharedPref().setUser(jsonRes["user"]);
+
+            Get.offAll(const BottomNavScreen());
+            break;
+          case 400:
+            throw BadRequestException(response.body.toString());
+
+          case 500:
+            throw InvalidInputException(response.body.toString());
+        }
+      } on SocketException {
+        Get.snackbar('Something went wrong', 'Check your internet connection',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.black87,
+            colorText: Colors.white,
+            icon: const Icon(
+              CupertinoIcons.wifi_slash,
+              color: Colors.white,
+            ));
+      } on BadRequestException {
+        Get.snackbar(
+          'Invalid User Name or Password',
+          'Please try again',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.black87,
+          colorText: Colors.white,
+        );
+      } on InvalidInputException {
+        Get.snackbar(
+          'Something Went Wrong',
+          'Please try again',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.black87,
+          colorText: Colors.white,
+        );
+      }
     }
-  }
   }
 }
