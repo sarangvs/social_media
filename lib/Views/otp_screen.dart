@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:social_media/Views/home_screen.dart';
 import 'package:social_media/Views/login_screen.dart';
 import 'package:social_media/instance.dart';
 
@@ -57,11 +58,9 @@ class OtpScreen extends StatelessWidget {
                       borderWidth: 4.0,
                       onCodeChanged: (String code) {},
                       onSubmit: (String otp) async {
-                        final userResponse =
-                            await authenticationController.otpVerification(otp);
-                        // Get.offAll(const LoginScreen());
+                         authenticationController.mobileOtpVerify(otp);
 
-                        print(userResponse);
+                        Get.offAll(const HomeScreen());
                       },
                       cursorColor: Colors.black,
                       focusedBorderColor: Colors.black,

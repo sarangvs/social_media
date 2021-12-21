@@ -26,3 +26,7 @@ class FetchDataException extends CustomException {
 class InvalidInputException extends CustomException {
   InvalidInputException([String? message]) : super(message, "Invalid Input: ");
 }
+
+class InvalidOtp extends CustomException {
+  InvalidOtp([message]) : super(message, "Something went wrong: ");
+}

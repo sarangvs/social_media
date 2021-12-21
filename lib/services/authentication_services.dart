@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:social_media/Controller/exception_controller.dart';
-import 'package:social_media/services/api_url.dart';
+import 'package:social_media/const/api_url.dart';
 
 class AuthenticationServices {
 
@@ -34,24 +34,26 @@ class AuthenticationServices {
 
   /// Mobile Otp Verification Post Request
 
-  static Future<String?> verifyWithOtp(
-      {required String phoneNumber, required String otp}) async {
-    final otpMap = {"phone": phoneNumber, "otp": otp};
-
-    var response = await http.post(ApiUrl.verifyMobileOtp, body: otpMap);
-
-    print("Response From Otp With Mobile${response.body}");
-
-    switch (response.statusCode) {
-      case 200:
-        var jsonResponse = jsonDecode(response.body);
-        return jsonResponse["phoneVerified"];
-
-      case 400:
-        throw BadRequestException(response.body.toString());
-
-      case 500:
-        throw InvalidInputException(response.body.toString());
-    }
-  }
-}
+//   static Future<String?> verifyWithOtp(
+//       {required String phoneNumber, required String otp}) async {
+//     final otpMap = {"phone": phoneNumber, "otp": otp};
+//
+//     var response = await http.post(ApiUrl.verifyMobileOtp, body: otpMap);
+//
+//   //  print("Response From Otp With Mobile${response.body}");
+//
+//     switch (response.statusCode) {
+//       case 200:
+//         var jsonResponse = jsonDecode(response.body);
+//         print(jsonResponse["token"]);
+//         print(jsonResponse["user"]);
+//       return jsonResponse["token"]["user"];
+//
+//       case 400:
+//         throw InvalidOtp(response.body.toString());
+//
+//       case 500:
+//         throw InvalidInputException(response.body.toString());
+//     }
+//   }
+ }
