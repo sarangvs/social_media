@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_media/instance.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -128,6 +127,7 @@ class SettingScreen extends StatelessWidget {
                   title: Text('Log out',
                       style: GoogleFonts.k2d(color: Colors.grey[600])),
                   trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: ()=>authenticationController.logoutUser(),
                 ),
               ),
               SizedBox(

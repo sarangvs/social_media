@@ -6,7 +6,6 @@ import 'package:social_media/Controller/authentication_controller.dart';
 import 'package:social_media/Views/signup_screen.dart';
 import 'package:social_media/instance.dart';
 
-import 'bottom_navscreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -184,7 +183,8 @@ class LoginScreen extends StatelessWidget {
                                   style: GoogleFonts.k2d(
                                       fontWeight: FontWeight.bold),
                                 ),
-                              )
+                              ),
+                              // SizedBox(height: 100,)
                             ],
                           )
                         ],

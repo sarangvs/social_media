@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:social_media/Views/bottom_navscreen.dart';
+import 'package:social_media/Views/login_screen.dart';
 import 'package:social_media/const/api_url.dart';
 import 'package:social_media/services/authentication_services.dart';
 import 'exception_controller.dart';
@@ -18,9 +19,30 @@ class AuthenticationController extends GetxController {
   ///Login Form Key
   static final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
+  var loginStatus = false;
+
+  ///Check Status of The user
+  checkUserStatus() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? loginOrNot = pref.getString("userToken");
+    if (loginOrNot != null) {
+      loginStatus = true;
+    }
+    update();
+  }
+
+  void logoutUser() async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.clear();
+    update();
+    Get.offAll(const LoginScreen());
+  }
+
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    checkUserStatus();
+
     fullNameController = TextEditingController();
     userNameController = TextEditingController();
     phoneController = TextEditingController();
@@ -46,7 +68,7 @@ class AuthenticationController extends GetxController {
             phone: userPhone,
             password: userPassword);
         return result;
-      } on SocketException {
+      } on SocketException{
         Get.snackbar('Something went wrong', 'Check your internet connection',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.black87,
@@ -178,7 +200,18 @@ class AuthenticationController extends GetxController {
 
       switch (response.statusCode) {
         case 200:
-          var jsonResponse = jsonDecode(response.body);
+          String encodedJsonRes = json.encode(response.body);
+
+          var decodeUser = jsonDecode(encodedJsonRes);
+
+          var userDetail = jsonDecode(decodeUser);
+
+          var encodeUserData = jsonEncode(userDetail["user"]);
+
+          await preferences.setString("userData", encodeUserData);
+
+          await preferences.setString("userToken", userDetail["token"]);
+          // var jsonResponse = jsonDecode(encodedJson);
           // preferences.setString('user', jsonResponse["user"]);
           // preferences.setString('token', jsonResponse["token"]);
           // dynamic userToken = preferences.get('token');
@@ -224,9 +257,7 @@ class AuthenticationController extends GetxController {
   ///login
   Future<dynamic> userLogin() async {
     final isValid = loginFormKey.currentState!.validate();
-
     SharedPreferences pref = await SharedPreferences.getInstance();
-
     if (!isValid) {
       return null;
     } else {
@@ -240,17 +271,13 @@ class AuthenticationController extends GetxController {
         switch (response.statusCode) {
           case 200:
             String encodedJsonRes = json.encode(response.body);
-            pref.setString('userData', encodedJsonRes);
-
-            var decodedJsonRes = jsonDecode(encodedJsonRes);
-            print(pref.getString('userData'));
-
-            // dynamic userToken = preferences.get('token');
-            // dynamic userDetails = preferences.get('user');
-            // await preferences.setString("token", jsonRes['token']);
-            // await preferences.setString("user", jsonRes['user']);
-            //  SharedPref().setUser(jsonRes["user"]);
-
+            var decodeUser = jsonDecode(encodedJsonRes);
+            var userDetail = jsonDecode(decodeUser);
+            var encodeUserData = jsonEncode(userDetail["user"]);
+            await pref.setString("userData", encodeUserData);
+            await pref.setString("userToken", userDetail["token"]);
+            // print(getUserData);
+            // print(getUserToken);
             Get.offAll(const BottomNavScreen());
             break;
           case 400:
@@ -259,7 +286,11 @@ class AuthenticationController extends GetxController {
           case 500:
             throw InvalidInputException(response.body.toString());
         }
-      } on SocketException {
+      } on SocketException catch(e){
+        print(e.message);
+        print(e.osError);
+        print(e.address);
+
         Get.snackbar('Something went wrong', 'Check your internet connection',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.black87,
