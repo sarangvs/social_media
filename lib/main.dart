@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
               labelColor: Colors.black,
               unselectedLabelColor: Colors.blue,
             )),
-        home: (authenticationController.loginStatus == false)
-            ? const LoginScreen()
-            : const BottomNavScreen(),
+        home: (authenticationController.loginStatus == true)
+            ? const BottomNavScreen()
+            : const LoginScreen(),
       );
     });
   }

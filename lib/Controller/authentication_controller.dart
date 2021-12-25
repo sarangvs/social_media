@@ -31,7 +31,7 @@ class AuthenticationController extends GetxController {
     update();
   }
 
-  void logoutUser() async{
+  void logoutUser() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.clear();
     update();
@@ -68,7 +68,7 @@ class AuthenticationController extends GetxController {
             phone: userPhone,
             password: userPassword);
         return result;
-      } on SocketException{
+      } on SocketException {
         Get.snackbar('Something went wrong', 'Check your internet connection',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.black87,
@@ -201,15 +201,10 @@ class AuthenticationController extends GetxController {
       switch (response.statusCode) {
         case 200:
           String encodedJsonRes = json.encode(response.body);
-
           var decodeUser = jsonDecode(encodedJsonRes);
-
           var userDetail = jsonDecode(decodeUser);
-
           var encodeUserData = jsonEncode(userDetail["user"]);
-
           await preferences.setString("userData", encodeUserData);
-
           await preferences.setString("userToken", userDetail["token"]);
           // var jsonResponse = jsonDecode(encodedJson);
           // preferences.setString('user', jsonResponse["user"]);
@@ -286,7 +281,7 @@ class AuthenticationController extends GetxController {
           case 500:
             throw InvalidInputException(response.body.toString());
         }
-      } on SocketException catch(e){
+      } on SocketException catch (e) {
         print(e.message);
         print(e.osError);
         print(e.address);
