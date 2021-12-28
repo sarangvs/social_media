@@ -30,8 +30,8 @@ class AddPost extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              postController.addPost();
+            onPressed: () async {
+               await postController.uploadImage(postController.image);
             },
             child: Text(
               'Done',
@@ -84,17 +84,16 @@ class AddPost extends StatelessWidget {
                         height: 1.h,
                       ),
                       Container(
-
                           child: postController.image == null
                               ? const Center(
                                   child: Text("Pick Image"),
                                 )
                               : Image.file(
-                                File(postController.image!.path).absolute,
-                                height: 50.h,
-                                width: 100.w,
-                                fit: BoxFit.cover,
-                              ))
+                                  File(postController.image!.path).absolute,
+                                  height: 50.h,
+                                  width: 100.w,
+                                  fit: BoxFit.cover,
+                                ))
                     ],
                   ),
                 )

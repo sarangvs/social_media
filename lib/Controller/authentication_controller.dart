@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:social_media/Views/bottom_navscreen.dart';
 import 'package:social_media/Views/login_screen.dart';
 import 'package:social_media/const/api_url.dart';
+import 'package:social_media/instance.dart';
 import 'package:social_media/services/authentication_services.dart';
 import 'exception_controller.dart';
 import 'package:http/http.dart' as http;
@@ -19,6 +20,7 @@ class AuthenticationController extends GetxController {
   ///Login Form Key
   static final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
+///User login status
   var loginStatus = false;
 
   ///Check Status of The user
@@ -31,6 +33,7 @@ class AuthenticationController extends GetxController {
     update();
   }
 
+  ///User Logout Function
   void logoutUser() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.clear();
@@ -42,6 +45,7 @@ class AuthenticationController extends GetxController {
   void onInit() async {
     super.onInit();
     checkUserStatus();
+    postController.getAllPost();
 
     fullNameController = TextEditingController();
     userNameController = TextEditingController();
@@ -249,7 +253,7 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  ///login
+  ///User Login Function
   Future<dynamic> userLogin() async {
     final isValid = loginFormKey.currentState!.validate();
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -271,11 +275,11 @@ class AuthenticationController extends GetxController {
             var encodeUserData = jsonEncode(userDetail["user"]);
             await pref.setString("userData", encodeUserData);
             await pref.setString("userToken", userDetail["token"]);
-            // print(getUserData);
+             print(pref.getString("userToken"));
             // print(getUserToken);
             Get.offAll(const BottomNavScreen());
             break;
-          case 400:
+          case 403:
             throw BadRequestException(response.body.toString());
 
           case 500:
@@ -295,13 +299,7 @@ class AuthenticationController extends GetxController {
               color: Colors.white,
             ));
       } on BadRequestException {
-        Get.snackbar(
-          'Invalid User Name or Password',
-          'Please try again',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.black87,
-          colorText: Colors.white,
-        );
+        logoutUser();
       } on InvalidInputException {
         Get.snackbar(
           'Something Went Wrong',
