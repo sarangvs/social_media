@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -257,9 +256,10 @@ class MyProfileHeader extends StatelessWidget {
                           InkWell(
                             child: Text(
                               '45',
-                              style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                              style:
+                                  GoogleFonts.k2d(fontWeight: FontWeight.bold),
                             ),
-                            onTap: ()=>Get.to(const FollowingFollowers()),
+                            onTap: () => Get.to(const FollowingFollowers()),
                           ),
                           SizedBox(
                             height: 1.h,
@@ -276,9 +276,10 @@ class MyProfileHeader extends StatelessWidget {
                           InkWell(
                             child: Text(
                               '10.2m',
-                              style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                              style:
+                                  GoogleFonts.k2d(fontWeight: FontWeight.bold),
                             ),
-                            onTap: ()=>Get.to(const FollowingFollowers()),
+                            onTap: () => Get.to(const FollowingFollowers()),
                           ),
                           SizedBox(
                             height: 1.h,
@@ -315,55 +316,52 @@ class MyProfileHeader extends StatelessWidget {
                   child: SizedBox(
                     width: 91.1.w,
                     height: 10.h,
-                    child: Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 40.w,
+                          height: 6.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black,
+                          ),
+                          child: Center(
+                            child: Text(
+                              '+ Add to your story',
+                              style: GoogleFonts.k2d(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Get.to(const EditMYProfile()),
+                          child: Container(
                             width: 40.w,
                             height: 6.h,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black,
-                            ),
-                            child: Center(
-                              child: Text(
-                                '+ Add to your story',
-                                style: GoogleFonts.k2d(
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white),
-                              ),
+                                borderRadius: BorderRadius.circular(12),
+                                color: Colors.white,
+                                border: Border.all()),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.edit,
+                                  size: 15.sp,
+                                ),
+                                Text(
+                                  'Edit profile',
+                                  style: GoogleFonts.k2d(
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black),
+                                ),
+                              ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: ()=>Get.to(const EditMYProfile()),
-                            child: Container(
-                              width: 40.w,
-                              height: 6.h,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: Colors.white,
-                                  border: Border.all()),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    size: 15.sp,
-                                  ),
-                                  Text(
-                                    'Edit profile',
-                                    style: GoogleFonts.k2d(
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   )),
               Positioned(

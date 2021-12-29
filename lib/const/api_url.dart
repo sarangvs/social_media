@@ -21,3 +21,6 @@ class ApiUrl {
   static var getPost = Uri.parse(
       "https://abhinavsocialmedia.herokuapp.com/api/v1/user/getposts");
 }
+
+
+

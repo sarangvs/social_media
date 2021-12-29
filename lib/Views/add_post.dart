@@ -31,7 +31,7 @@ class AddPost extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () async {
-               await postController.uploadImage(postController.image);
+               await postController.postImage(postController.image);
             },
             child: Text(
               'Done',

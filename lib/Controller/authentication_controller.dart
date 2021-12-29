@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:social_media/Model/post_model.dart';
 import 'package:social_media/Views/bottom_navscreen.dart';
 import 'package:social_media/Views/login_screen.dart';
 import 'package:social_media/const/api_url.dart';
@@ -41,11 +42,12 @@ class AuthenticationController extends GetxController {
     Get.offAll(const LoginScreen());
   }
 
+
+
   @override
   void onInit() async {
     super.onInit();
     checkUserStatus();
-    postController.getAllPost();
 
     fullNameController = TextEditingController();
     userNameController = TextEditingController();
