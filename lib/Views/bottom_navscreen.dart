@@ -19,9 +19,9 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   var pages = [
     const HomeScreen(),
-    const SearchScreen(),
+     SearchScreen(),
     const ActivityScreen(),
-    const MyProfile()
+     MyProfile()
   ];
 
   @override

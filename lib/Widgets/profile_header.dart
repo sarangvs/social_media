@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_media/Controller/my_profile_controller.dart';
+import 'package:social_media/Model/profile/my_profile_model.dart';
 import 'package:social_media/Views/edit_my_profile.dart';
 import 'package:social_media/Views/following_followers_screen.dart';
+
+import '../instance.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({Key? key}) : super(key: key);
@@ -200,8 +204,17 @@ class ProfileHeader extends StatelessWidget {
 
 ///My profile ProfileHeader
 
-class MyProfileHeader extends StatelessWidget {
+class MyProfileHeader extends StatefulWidget {
   const MyProfileHeader({Key? key}) : super(key: key);
+
+  @override
+  _MyProfileHeaderState createState() => _MyProfileHeaderState();
+}
+
+class _MyProfileHeaderState extends State<MyProfileHeader> {
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -235,12 +248,14 @@ class MyProfileHeader extends StatelessWidget {
               Positioned(
                   top: 33.5.h,
                   left: 42.w,
-                  child: Text(
-                    'Sarang',
-                    style: GoogleFonts.k2d(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 15.sp),
+                  child: GetBuilder<MyProfileController>(
+                    builder: (controller)=> Text(
+                      "${myProfileController.profileModel.user![0].name}",
+                      style: GoogleFonts.k2d(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 15.sp),
+                    ),
                   )),
               Positioned(
                 left: 5.w,
@@ -257,7 +272,7 @@ class MyProfileHeader extends StatelessWidget {
                             child: Text(
                               '45',
                               style:
-                                  GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                              GoogleFonts.k2d(fontWeight: FontWeight.bold),
                             ),
                             onTap: () => Get.to(const FollowingFollowers()),
                           ),
@@ -277,7 +292,7 @@ class MyProfileHeader extends StatelessWidget {
                             child: Text(
                               '10.2m',
                               style:
-                                  GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                              GoogleFonts.k2d(fontWeight: FontWeight.bold),
                             ),
                             onTap: () => Get.to(const FollowingFollowers()),
                           ),
@@ -319,19 +334,24 @@ class MyProfileHeader extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: 40.w,
-                          height: 6.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
-                          ),
-                          child: Center(
-                            child: Text(
-                              '+ Add to your story',
-                              style: GoogleFonts.k2d(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
+                        GestureDetector(
+                          onTap: () {
+                           // myProfileController.getUserData();
+                          },
+                          child: Container(
+                            width: 40.w,
+                            height: 6.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.black,
+                            ),
+                            child: Center(
+                              child: Text(
+                                '+ Add to your story',
+                                style: GoogleFonts.k2d(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
@@ -375,7 +395,7 @@ class MyProfileHeader extends StatelessWidget {
                       elevation: 0,
                       bottom: TabBar(
                         unselectedLabelStyle:
-                            const TextStyle(color: Colors.grey),
+                        const TextStyle(color: Colors.grey),
                         labelColor: Colors.black,
                         unselectedLabelColor: Colors.grey,
                         indicatorSize: TabBarIndicatorSize.tab,
@@ -409,4 +429,5 @@ class MyProfileHeader extends StatelessWidget {
           ))
     ]);
   }
+
 }

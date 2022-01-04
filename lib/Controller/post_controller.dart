@@ -5,7 +5,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:social_media/Model/post_model.dart';
+import 'package:social_media/Model/post/post_model.dart';
 import 'package:social_media/const/api_url.dart';
 import 'package:path/path.dart';
 
@@ -49,6 +49,7 @@ class PostController extends GetxController {
     var userDecode = convert.jsonDecode(userEncode);
     var userDetails = convert.jsonDecode(userDecode);
     var userId = await userDetails['_id'];
+    print(userId);
 
     var stream = http.ByteStream(file.openRead());
     stream.cast();
@@ -60,7 +61,7 @@ class PostController extends GetxController {
 
       // add text fields
       request.fields["desc"] = descriptionController.text;
-      request.fields["userid"] = userId;
+      request.fields["userId"] = userId;
       Map<String, String> requestHeaders = {
         'Authorization': '${prefs.getString('userToken')}',
       };
@@ -82,24 +83,24 @@ class PostController extends GetxController {
   }
 
   ///Api Calling Method
-  Future<List<Posts>> getPost() async {
-    http.Response response = await http.get(ApiUrl.getPost);
-
-    try {
-      if (response.statusCode == 200) {
-        List<dynamic> body = convert.jsonDecode(response.body);
-
-        List<Posts> posts =
-            body.map((dynamic item) => Posts.fromJson(item)).toList();
-        return posts;
-      } else {
-        throw "failed";
-      }
-    } catch (e) {
-      print("Fetch Data Error ::$e");
-      throw "Failed";
-    }
-  }
+  // Future<List<Posts>> getPost() async {
+  //   http.Response response = await http.get(ApiUrl.getPost);
+  //
+  //   try {
+  //     if (response.statusCode == 200) {
+  //       List<dynamic> body = convert.jsonDecode(response.body);
+  //
+  //       List<Posts> posts =
+  //           body.map((dynamic item) => Posts.fromJson(item)).toList();
+  //       return posts;
+  //     } else {
+  //       throw "failed";
+  //     }
+  //   } catch (e) {
+  //     print("Fetch Data Error ::$e");
+  //     throw "Failed";
+  //   }
+  // }
 
 // getPostData()async{
 //   callApi(ApiUrl.getPost).then((response){

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:social_media/Model/post_model.dart';
+import 'package:social_media/Model/post/post_model.dart';
 import 'package:social_media/Views/bottom_navscreen.dart';
 import 'package:social_media/Views/login_screen.dart';
 import 'package:social_media/const/api_url.dart';
@@ -263,7 +263,8 @@ class AuthenticationController extends GetxController {
       return null;
     } else {
       final body = {
-        "phone": loginUserDetailController.text,
+        "username": loginUserDetailController.text,
+        "phone":loginUserDetailController.text,
         "password": loginUserPassword.text
       };
       try {

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_media/Controller/my_profile_controller.dart';
 import 'package:social_media/Widgets/custom_profile_appbar.dart';
 import 'package:social_media/Widgets/profile_header.dart';
 
 class MyProfile extends StatelessWidget {
-  const MyProfile({Key? key}) : super(key: key);
+   MyProfile({Key? key}) : super(key: key);
+
+  MyProfileController profileController = Get.put(MyProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class MyProfile extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Container(
                       color: const Color(0xffF5F5F7),
-                      child: const MyProfileHeader()),
+                      child: MyProfileHeader()),
                 ),
               ];
             },

@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
-import 'package:social_media/Model/post_model.dart';
+import 'package:social_media/Model/post/post_model.dart';
 import 'package:social_media/Views/story_page_viewer.dart';
 import 'package:social_media/instance.dart';
 
@@ -75,7 +75,7 @@ class PostFeed extends StatelessWidget {
         height: screenWidth + 250,
         width: screenWidth,
         child: FutureBuilder(
-          future: postController.getPost(),
+        //  future: postController.getPost(),
             builder: (BuildContext context, AsyncSnapshot<List<Posts>> snapshot) {
           return ListView.separated(
             itemBuilder: (context, index) {
