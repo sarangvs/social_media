@@ -17,6 +17,5 @@ final postController = Get.put(PostController());
 final SearchUserController searchUserController = Get.put(SearchUserController());
 
 ///my profile
-final MyProfileController myProfileController = Get.put(MyProfileController());
-
+int friendIndex = searchUserController.results.length;
 

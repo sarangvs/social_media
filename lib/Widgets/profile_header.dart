@@ -212,9 +212,8 @@ class MyProfileHeader extends StatefulWidget {
 }
 
 class _MyProfileHeaderState extends State<MyProfileHeader> {
-
-
-
+  final MyProfileController myProfileController =
+      Get.put(MyProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -249,7 +248,7 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
                   top: 33.5.h,
                   left: 42.w,
                   child: GetBuilder<MyProfileController>(
-                    builder: (controller)=> Text(
+                    builder: (controller) => Text(
                       "${myProfileController.profileModel.user![0].name}",
                       style: GoogleFonts.k2d(
                           fontWeight: FontWeight.bold,
@@ -270,9 +269,9 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
                         children: [
                           InkWell(
                             child: Text(
-                              '45',
+                              '${myProfileController.profileModel.user![0].followings!.length}',
                               style:
-                              GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                                  GoogleFonts.k2d(fontWeight: FontWeight.bold),
                             ),
                             onTap: () => Get.to(const FollowingFollowers()),
                           ),
@@ -290,9 +289,9 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
                         children: [
                           InkWell(
                             child: Text(
-                              '10.2m',
+                              '${myProfileController.profileModel.user![0].followers!.length}',
                               style:
-                              GoogleFonts.k2d(fontWeight: FontWeight.bold),
+                                  GoogleFonts.k2d(fontWeight: FontWeight.bold),
                             ),
                             onTap: () => Get.to(const FollowingFollowers()),
                           ),
@@ -309,7 +308,7 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            '106',
+                            '${myProfileController.profileModel.posts![0].files![0].length}',
                             style: GoogleFonts.k2d(fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
@@ -336,7 +335,7 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                           // myProfileController.getUserData();
+                            // myProfileController.getUserData();
                           },
                           child: Container(
                             width: 40.w,
@@ -395,7 +394,7 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
                       elevation: 0,
                       bottom: TabBar(
                         unselectedLabelStyle:
-                        const TextStyle(color: Colors.grey),
+                            const TextStyle(color: Colors.grey),
                         labelColor: Colors.black,
                         unselectedLabelColor: Colors.grey,
                         indicatorSize: TabBarIndicatorSize.tab,
@@ -429,5 +428,4 @@ class _MyProfileHeaderState extends State<MyProfileHeader> {
           ))
     ]);
   }
-
 }

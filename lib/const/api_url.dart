@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 class ApiUrl {
   ///SignUP url(POST)
   static var signupUrl =
@@ -20,6 +22,10 @@ class ApiUrl {
 ///GET
   static var getPost = Uri.parse(
       "https://abhinavsocialmedia.herokuapp.com/api/v1/user/getposts");
+
+///GET
+ static var deletePost = Uri.parse("https://abhinavsocialmedia.herokuapp.com/api/v1/user/deletePost");
+
 }
 
 
